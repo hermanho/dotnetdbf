@@ -1,0 +1,4 @@
+C:\Users\herman\Documents\GitHub\dotnetdbf\DotNetDBF\bin\Release\DotNetDBF.dll.config
+C:\Users\herman\Documents\GitHub\dotnetdbf\DotNetDBF\bin\Release\DotNetDBF.XML
+C:\Users\herman\Documents\GitHub\dotnetdbf\DotNetDBF\bin\Release\DotNetDBF.dll
+C:\Users\herman\Documents\GitHub\dotnetdbf\DotNetDBF\obj\Release\DotNetDBF.dll

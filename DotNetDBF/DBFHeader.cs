@@ -26,7 +26,9 @@ namespace DotNetDBF
         public const byte NotSet = 0,
                           WithMemo = 0x80,
                           DBase3 = 0x03,
-                          DBase3WithMemo = DBase3 | WithMemo;
+                          DBase3WithMemo = DBase3 | WithMemo,
+                          VisualFoxPro = 0x30,
+                          VisualFoxPro_AutoTncrement = 0x31;
 
     }
 

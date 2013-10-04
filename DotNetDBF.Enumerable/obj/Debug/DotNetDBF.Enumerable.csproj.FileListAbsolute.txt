@@ -1,0 +1,10 @@
+C:\Users\herman\Documents\GitHub\dotnetdbf\DotNetDBF.Enumerable\bin\Debug\DotNetDBF.Enumerable.XML
+C:\Users\herman\Documents\GitHub\dotnetdbf\DotNetDBF.Enumerable\bin\Debug\DotNetDBF.Enumerable.dll
+C:\Users\herman\Documents\GitHub\dotnetdbf\DotNetDBF.Enumerable\bin\Debug\DotNetDBF.Enumerable.pdb
+C:\Users\herman\Documents\GitHub\dotnetdbf\DotNetDBF.Enumerable\bin\Debug\DotNetDBF.dll
+C:\Users\herman\Documents\GitHub\dotnetdbf\DotNetDBF.Enumerable\bin\Debug\ImpromptuInterface.dll
+C:\Users\herman\Documents\GitHub\dotnetdbf\DotNetDBF.Enumerable\bin\Debug\DotNetDBF.pdb
+C:\Users\herman\Documents\GitHub\dotnetdbf\DotNetDBF.Enumerable\bin\Debug\ImpromptuInterface.xml
+C:\Users\herman\Documents\GitHub\dotnetdbf\DotNetDBF.Enumerable\obj\Debug\DotNetDBF.Enumerable.csprojResolveAssemblyReference.cache
+C:\Users\herman\Documents\GitHub\dotnetdbf\DotNetDBF.Enumerable\obj\Debug\DotNetDBF.Enumerable.dll
+C:\Users\herman\Documents\GitHub\dotnetdbf\DotNetDBF.Enumerable\obj\Debug\DotNetDBF.Enumerable.pdb

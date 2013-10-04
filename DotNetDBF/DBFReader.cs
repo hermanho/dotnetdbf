@@ -304,6 +304,7 @@ namespace DotNetDBF
 
                             break;
 
+                        case NativeDbType.Double:
                         case NativeDbType.Float:
 
                             try
@@ -312,18 +313,19 @@ namespace DotNetDBF
                                     _header.FieldArray[i].FieldLength
                                     ];
                                 _dataInputStream.Read(t_float, 0, t_float.Length);
-                                String tParsed = CharEncoding.GetString(t_float);
-                                var tLast = tParsed.Substring(tParsed.Length - 1);
-                                if (tParsed.Length > 0
-                                    && tLast != " "
-                                    && tLast != DBFFieldType.Unknown)
-                                {
-                                    recordObjects[i] = Double.Parse(tParsed, NumberStyles.Float | NumberStyles.AllowLeadingWhite);
-                                }
-                                else
-                                {
-                                    recordObjects[i] = null;
-                                }
+                                //String tParsed = CharEncoding.GetString(t_float);
+                                //var tLast = tParsed.Substring(tParsed.Length - 1);
+                                //if (tParsed.Length > 0
+                                //    && tLast != " "
+                                //    && tLast != DBFFieldType.Unknown)
+                                //{
+                                //    recordObjects[i] = Double.Parse(tParsed, NumberStyles.Float | NumberStyles.AllowLeadingWhite);
+                                //}
+                                //else
+                                //{
+                                //    recordObjects[i] = null;
+                                //}
+                                recordObjects[i] = BitConverter.ToDouble(t_float, 0);
                             }
                             catch (FormatException e)
                             {
@@ -333,6 +335,8 @@ namespace DotNetDBF
 
                             break;
 
+                        case NativeDbType.Currency:
+                        case NativeDbType.Integer:
                         case NativeDbType.Numeric:
 
                             try
