@@ -90,8 +90,9 @@ namespace DotNetDBF
             header.Read(new BinaryReader(raf));
 
             /* position file pointer at the end of the raf */
-            raf.Seek(-1, SeekOrigin.End);
-                /* to ignore the END_OF_DATA byte at EoF */
+            //raf.Seek(-1, SeekOrigin.End);
+            raf.Seek(0, SeekOrigin.End);
+            /* to ignore the END_OF_DATA byte at EoF */
 
 
             recordCount = header.NumberOfRecords;
@@ -258,6 +259,8 @@ namespace DotNetDBF
                         }
                         break;
 
+                    case NativeDbType.Currency:
+                    case NativeDbType.Integer:
                     case NativeDbType.Numeric:
                         if (!(values[i] is IConvertible) && !(values[i] is DBNull))
                         {
@@ -274,6 +277,7 @@ namespace DotNetDBF
                         }
                         break;
 
+                    case NativeDbType.Double:
                     case NativeDbType.Float:
                         if (!(values[i] is IConvertible) && !(values[i] is DBNull))
                         {
@@ -404,13 +408,14 @@ namespace DotNetDBF
 
                         break;
 
+                    case NativeDbType.Double:
                     case NativeDbType.Float:
 
                         if (objectArray[j] != null && objectArray[j] != DBNull.Value)
                         {
                             Double tDouble = Convert.ToDouble(objectArray[j]);
                             dataOutput.Write(
-                                Utils.NumericFormating(
+                                Utils.VfpNumericFormating(
                                     tDouble,
                                     CharEncoding,
                                     header.FieldArray[j].FieldLength,
@@ -420,9 +425,17 @@ namespace DotNetDBF
                         }
                         else
                         {
+                            //dataOutput.Write(
+                            //    Utils.textPadding(
+                            //        DBFFieldType.Unknown,
+                            //        CharEncoding,
+                            //        header.FieldArray[j].FieldLength,
+                            //        Utils.ALIGN_RIGHT
+                            //        )
+                            //    );
                             dataOutput.Write(
                                 Utils.textPadding(
-                                    DBFFieldType.Unknown,
+                                    " ",
                                     CharEncoding,
                                     header.FieldArray[j].FieldLength,
                                     Utils.ALIGN_RIGHT
@@ -432,6 +445,8 @@ namespace DotNetDBF
 
                         break;
 
+                    case NativeDbType.Currency:
+                    case NativeDbType.Integer:
                     case NativeDbType.Numeric:
 
                         if (objectArray[j] != null && objectArray[j] != DBNull.Value)
@@ -448,9 +463,17 @@ namespace DotNetDBF
                         }
                         else
                         {
+                            //dataOutput.Write(
+                            //    Utils.textPadding(
+                            //        DBFFieldType.Unknown,
+                            //        CharEncoding,
+                            //        header.FieldArray[j].FieldLength,
+                            //        Utils.ALIGN_RIGHT
+                            //        )
+                            //    );
                             dataOutput.Write(
                                 Utils.textPadding(
-                                    DBFFieldType.Unknown,
+                                    " ",
                                     CharEncoding,
                                     header.FieldArray[j].FieldLength,
                                     Utils.ALIGN_RIGHT
@@ -474,7 +497,8 @@ namespace DotNetDBF
                         }
                         else
                         {
-                            dataOutput.Write(DBFFieldType.UnknownByte);
+                            //dataOutput.Write(DBFFieldType.UnknownByte);
+                            dataOutput.Write(" ");
                         }
 
                         break;

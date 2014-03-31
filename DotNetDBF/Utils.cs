@@ -120,7 +120,7 @@ namespace DotNetDBF
             for (int i = 0; i < sizeWholePart; i++)
             {
 
-                format.Append(i+1== sizeWholePart ? "0":"#");
+                format.Append(i + 1 == sizeWholePart ? "0" : "#");
             }
 
             if (sizeDecimalPart > 0)
@@ -143,6 +143,40 @@ namespace DotNetDBF
                     ALIGN_RIGHT);
         }
 
+        static public byte[] VfpNumericFormating(IFormattable doubleNum,
+                                              Encoding charEncoding,
+                                              int fieldLength,
+                                              int sizeDecimalPart)
+        {
+            int sizeWholePart = fieldLength
+                                -
+                                (sizeDecimalPart > 0 ? (sizeDecimalPart + 1) : 0);
+
+            StringBuilder format = new StringBuilder(fieldLength);
+
+            for (int i = 0; i < sizeWholePart; i++)
+            {
+
+                format.Append(i + 1 == sizeWholePart ? "0" : "#");
+            }
+
+            if (sizeDecimalPart > 0)
+            {
+                format.Append(".");
+
+                for (int i = 0; i < sizeDecimalPart; i++)
+                {
+                    format.Append("0");
+                }
+            }
+
+            if (doubleNum is double)
+                return BitConverter.GetBytes((double)doubleNum);
+            else if (doubleNum is int)
+                return BitConverter.GetBytes((int)doubleNum);
+            return new byte[0];
+        }
+
         static public bool contains(byte[] arr, byte value)
         {
             return
@@ -153,20 +187,20 @@ namespace DotNetDBF
 
         static public Type TypeForNativeDBType(NativeDbType aType)
         {
-            switch(aType)
+            switch (aType)
             {
                 case NativeDbType.Char:
-                    return typeof (string);
+                    return typeof(string);
                 case NativeDbType.Date:
-                    return typeof (DateTime);
+                    return typeof(DateTime);
                 case NativeDbType.Numeric:
-                    return typeof (decimal);
+                    return typeof(decimal);
                 case NativeDbType.Logical:
-                    return typeof (bool);
+                    return typeof(bool);
                 case NativeDbType.Float:
-                    return typeof (float);
+                    return typeof(float);
                 case NativeDbType.Memo:
-                    return typeof (MemoValue);
+                    return typeof(MemoValue);
                 default:
                     throw new ArgumentException("Unsupported Type");
             }

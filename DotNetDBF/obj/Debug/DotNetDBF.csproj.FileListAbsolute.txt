@@ -3,3 +3,6 @@ C:\Users\herman\Documents\GitHub\dotnetdbf\DotNetDBF\bin\Debug\DotNetDBF.dll
 C:\Users\herman\Documents\GitHub\dotnetdbf\DotNetDBF\bin\Debug\DotNetDBF.pdb
 C:\Users\herman\Documents\GitHub\dotnetdbf\DotNetDBF\obj\Debug\DotNetDBF.dll
 C:\Users\herman\Documents\GitHub\dotnetdbf\DotNetDBF\obj\Debug\DotNetDBF.pdb
+C:\Users\Herman\Documents\Github\dotnetdbf\DotNetDBF\bin\Debug\ImpromptuInterface.dll
+C:\Users\Herman\Documents\Github\dotnetdbf\DotNetDBF\bin\Debug\ImpromptuInterface.xml
+C:\Users\Herman\Documents\Github\dotnetdbf\DotNetDBF\obj\Debug\DotNetDBF.csprojResolveAssemblyReference.cache

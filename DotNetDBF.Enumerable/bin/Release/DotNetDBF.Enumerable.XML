@@ -16,14 +16,14 @@
             <param name="writer">The writer.</param>
             <returns></returns>
         </member>
-        <member name="M:DotNetDBF.Enumerable.DBFEnumerable.WriteRecord(DotNetDBF.DBFWriter,DotNetDBF.Enumerable.DBFEnumerable.IDBFIntercepter)">
+        <member name="M:DotNetDBF.Enumerable.DBFEnumerable.WriteRecord(DotNetDBF.DBFWriter,DotNetDBF.Enumerable.IDBFIntercepter)">
             <summary>
             Writes the record.
             </summary>
             <param name="writer">The writer.</param>
             <param name="value">The value.</param>
         </member>
-        <member name="M:DotNetDBF.Enumerable.DBFEnumerable.AddRecord(DotNetDBF.DBFWriter,DotNetDBF.Enumerable.DBFEnumerable.IDBFIntercepter)">
+        <member name="M:DotNetDBF.Enumerable.DBFEnumerable.AddRecord(DotNetDBF.DBFWriter,DotNetDBF.Enumerable.IDBFIntercepter)">
             <summary>
             Adds the record.
             </summary>
@@ -50,27 +50,68 @@
             <param name="whereColumnEquals">What the were column should equal.</param>
             <returns></returns>
         </member>
-        <member name="T:DotNetDBF.Enumerable.DBFEnumerable.IDBFIntercepter">
+        <member name="T:DotNetDBF.Enumerable.IDBFIntercepter">
             <summary>
             Interface to get the contents of the DBF Wrapper
             </summary>
         </member>
-        <member name="M:DotNetDBF.Enumerable.DBFEnumerable.IDBFIntercepter.Exists(System.String)">
+        <member name="M:DotNetDBF.Enumerable.IDBFIntercepter.Exists(System.String)">
             <summary>
             Does field exist in row
             </summary>
             <returns></returns>
         </member>
-        <member name="M:DotNetDBF.Enumerable.DBFEnumerable.IDBFIntercepter.GetDataRow">
+        <member name="M:DotNetDBF.Enumerable.IDBFIntercepter.GetDataRow">
             <summary>
             Gets the data row.
             </summary>
             <returns></returns>
         </member>
-        <member name="T:DotNetDBF.Enumerable.DBFEnumerable.DBFIntercepter">
+        <member name="T:DotNetDBF.Enumerable.BaseDBFIntercepter">
             <summary>
             DBF Dynamic Wrapper
             </summary>
+        </member>
+        <member name="M:DotNetDBF.Enumerable.Enuemrable.NewBlankRow(DotNetDBF.DBFWriter)">
+            <summary>
+            New Blank Row Dynamic object that matches writer;
+            </summary>
+            <param name="writer">The writer.</param>
+            <returns></returns>
+        </member>
+        <member name="M:DotNetDBF.Enumerable.Enuemrable.WriteRecord(DotNetDBF.DBFWriter,DotNetDBF.Enumerable.Enuemrable.IDBFIntercepter)">
+            <summary>
+            Writes the record.
+            </summary>
+            <param name="writer">The writer.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:DotNetDBF.Enumerable.Enuemrable.AddRecord(DotNetDBF.DBFWriter,DotNetDBF.Enumerable.Enuemrable.IDBFIntercepter)">
+            <summary>
+            Adds the record.
+            </summary>
+            <param name="writer">The writer.</param>
+            <param name="value">The value.</param>
+        </member>
+        <member name="M:DotNetDBF.Enumerable.Enuemrable.AllRecords``1(DotNetDBF.DBFReader,``0)">
+            <summary>
+            Return all the records. T should be interface with getter properties that match types and names of the database. 
+            Optionally instead of T being and interface you can pass in an annoymous object with properties that match that 
+            database and then you'll get an IEnumerable of that annonymous type with the data filled in.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="reader">The reader.</param>
+            <param name="prototype">The prototype. Anonymous class instance</param>
+            <returns></returns>
+        </member>
+        <member name="M:DotNetDBF.Enumerable.Enuemrable.DynamicAllRecords(DotNetDBF.DBFReader,System.String,System.Object)">
+            <summary>
+            Returns a list of dynamic objects whose properties and types match up with that database name.
+            </summary>
+            <param name="reader">The reader.</param>
+            <param name="whereColumn">The where column name.</param>
+            <param name="whereColumnEquals">What the were column should equal.</param>
+            <returns></returns>
         </member>
     </members>
 </doc>

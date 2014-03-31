@@ -35,7 +35,7 @@ namespace DotNetDBF
     [Flags]
     public enum MemoFlags : byte
     {
-        
+
     }
 
 
@@ -64,7 +64,8 @@ namespace DotNetDBF
 
         public DBFHeader()
         {
-            _signature = DBFSigniture.DBase3;
+            //_signature = DBFSigniture.DBase3;
+            _signature = DBFSigniture.VisualFoxPro;
         }
 
         internal byte Signature
@@ -72,7 +73,8 @@ namespace DotNetDBF
             get
             {
                 return _signature;
-            }set
+            }
+            set
             {
                 _signature = value;
             }
@@ -82,22 +84,40 @@ namespace DotNetDBF
         {
             get
             {
-                return (short) (sizeof (byte) +
-                                sizeof (byte) + sizeof (byte) + sizeof (byte) +
-                                sizeof (int) +
-                                sizeof (short) +
-                                sizeof (short) +
-                                sizeof (short) +
-                                sizeof (byte) +
-                                sizeof (byte) +
-                                sizeof (int) +
-                                sizeof (int) +
-                                sizeof (int) +
-                                sizeof (byte) +
-                                sizeof (byte) +
-                                sizeof (short) +
-                                (DBFField.SIZE * _fieldArray.Length) +
-                                sizeof (byte));
+                if (_signature == DBFSigniture.VisualFoxPro || _signature == DBFSigniture.VisualFoxPro_AutoTncrement)
+                    return (short)(sizeof(byte) +
+                                    sizeof(byte) + sizeof(byte) + sizeof(byte) +
+                                    sizeof(int) +
+                                    sizeof(short) +
+                                    sizeof(short) +
+                                    sizeof(short) +
+                                    sizeof(byte) +
+                                    sizeof(byte) +
+                                    sizeof(int) +
+                                    sizeof(int) +
+                                    sizeof(int) +
+                                    sizeof(byte) +
+                                    sizeof(byte) +
+                                    sizeof(short) +
+                                    (DBFField.SIZE * _fieldArray.Length) +
+                                    sizeof(byte) + 263);
+                else
+                    return (short)(sizeof(byte) +
+                                    sizeof(byte) + sizeof(byte) + sizeof(byte) +
+                                    sizeof(int) +
+                                    sizeof(short) +
+                                    sizeof(short) +
+                                    sizeof(short) +
+                                    sizeof(byte) +
+                                    sizeof(byte) +
+                                    sizeof(int) +
+                                    sizeof(int) +
+                                    sizeof(int) +
+                                    sizeof(byte) +
+                                    sizeof(byte) +
+                                    sizeof(short) +
+                                    (DBFField.SIZE * _fieldArray.Length) +
+                                    sizeof(byte));
             }
         }
 
@@ -209,9 +229,12 @@ namespace DotNetDBF
         {
             dataOutput.Write(_signature); /* 0 */
             DateTime tNow = DateTime.Now;
-            _year = (byte) (tNow.Year - 1900);
-            _month = (byte) (tNow.Month);
-            _day = (byte) (tNow.Day);
+            if (_signature == DBFSigniture.VisualFoxPro || _signature == DBFSigniture.VisualFoxPro)
+                _year = (byte)(tNow.Year % 100);
+            else
+                _year = (byte)(tNow.Year - 1900);
+            _month = (byte)(tNow.Month);
+            _day = (byte)(tNow.Day);
 
             dataOutput.Write(_year); /* 1 */
             dataOutput.Write(_month); /* 2 */
@@ -242,7 +265,7 @@ namespace DotNetDBF
                 //System.out.println( "Length: " + _fieldArray[i].getFieldLength());
                 _fieldArray[i].Write(dataOutput);
             }
-
+            
             dataOutput.Write(HeaderRecordTerminator); /* n+1 */
         }
     }
