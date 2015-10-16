@@ -352,8 +352,9 @@ namespace DotNetDBF
             {
                 raf.Seek(0, SeekOrigin.Begin);
                 header.Write(new BinaryWriter(raf));
-                raf.Seek(0, SeekOrigin.End);
-                raf.WriteByte(DBFFieldType.EndOfData);
+                raf.Seek(-1, SeekOrigin.End);
+                if (raf.ReadByte() != DBFFieldType.EndOfData)
+                    raf.WriteByte(DBFFieldType.EndOfData);
                 raf.Close();
             }
         }
